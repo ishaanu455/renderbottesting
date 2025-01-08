@@ -10,7 +10,7 @@ console.log('Bot is running...');
 
 // Handle the /start command
 bot.onText(/\/start/, (msg) => {
-    bot.sendMessage(msg.chat.id, "Hello! I'm your simple bot. How can I help you?");
+    bot.sendMessage(chatId, You said: ${text});
 });
 
 // Echo any other messages
