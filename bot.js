@@ -1,24 +1,25 @@
 const TelegramBot = require('node-telegram-bot-api');
 
-// Replace with your bot's token
-const token = '7646684044:AAHD9Iy_N6TPQb_TEL17WN5eJYN1idWd_AQ'; // Insert your bot token here
+// Replace with your bot's token from BotFather
+const token = '7646684044:AAHD9Iy_N6TPQb_TEL17WN5eJYN1idWd_AQ';
 
-// Create a bot that uses 'polling' to fetch new updates
+// Create the bot with 'polling' method
 const bot = new TelegramBot(token, { polling: true });
 
 console.log('Bot is running...');
 
-// Handle the /start command
+// When the bot receives the /start command
 bot.onText(/\/start/, (msg) => {
-    bot.sendMessage(msg.chat.id, "Hello! I'm your simple bot. How can I help you?");
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, "Hello! I am your Telegram bot. Send me a message!");
 });
 
-// Echo any other messages
+// When the bot receives any message (except commands like /start)
 bot.on('message', (msg) => {
-    const chatId = msg.chat.id;
+  const chatId = msg.chat.id;
 
-    // Check if the message is not a command
-    if (!msg.text.startsWith('/')) {
-        bot.sendMessage(chatId, "You said: " + msg.text);
-    }
+  // Send back the message text that the user sent
+  if (msg.text && !msg.text.startsWith('/')) {
+    bot.sendMessage(chatId, "You said: " + msg.text);
+  }
 });
