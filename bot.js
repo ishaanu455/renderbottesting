@@ -1,25 +1,29 @@
 const TelegramBot = require('node-telegram-bot-api');
 
-// Replace with your bot's token from BotFather
+// replace the value below with the Telegram token you receive from @BotFather
 const token = '7646684044:AAHD9Iy_N6TPQb_TEL17WN5eJYN1idWd_AQ';
 
-// Create the bot with 'polling' method
-const bot = new TelegramBot(token, { polling: true });
+// Create a bot that uses 'polling' to fetch new updates
+const bot = new TelegramBot(token, {polling: true});
 
-console.log('Bot is running...');
+// Matches "/echo [whatever]"
+bot.onText(/\/echo (.+)/, (msg, match) => {
+  // 'msg' is the received Message from Telegram
+  // 'match' is the result of executing the regexp above on the text content
+  // of the message
 
-// When the bot receives the /start command
-bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  bot.sendMessage(chatId, "Hello! I am your Telegram bot. Send me a message!");
+  const resp = match[1]; // the captured "whatever"
+
+  // send back the matched "whatever" to the chat
+  bot.sendMessage(chatId, resp);
 });
 
-// When the bot receives any message (except commands like /start)
+// Listen for any kind of message. There are different kinds of
+// messages.
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
 
-  // Send back the message text that the user sent
-  if (msg.text && !msg.text.startsWith('/')) {
-    bot.sendMessage(chatId, "You said: " + msg.text);
-  }
+  // send a message to the chat acknowledging receipt of their message
+  bot.sendMessage(chatId, 'Received your message');
 });
