@@ -1,0 +1,14 @@
+{
+  "name": "simple-telegram-bot",
+  "version": "1.0.0",
+  "description": "A simple Telegram bot using Node.js",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.61.0"
+  }
+}
