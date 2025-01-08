@@ -19,6 +19,6 @@ bot.on('message', (msg) => {
     const text = msg.text;
 
     if (text !== '/start') {
-        bot.sendMessage(chatId, `You said: ${text});
+        bot.sendMessage(chatId, `You said: ${text}`);
     }
 });
